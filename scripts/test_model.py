@@ -9,6 +9,7 @@ def load_model(model_path="models/anomaly_model.pkl"):
     """
     Load the trained Isolation Forest model.
     """
+    print("Attempting to load the model...")  # Debugging line
     full_model_path = os.path.join(BASE_DIR, model_path)
     if not os.path.exists(full_model_path):
         raise FileNotFoundError(f"Model file not found at {full_model_path}")
@@ -20,12 +21,15 @@ def test_model(model, test_data):
     """
     Test the Isolation Forest model with new data.
     """
+    print(f"Testing with data: {test_data}")
     predictions = model.predict(test_data.reshape(-1, 1))
-    # Map predictions (-1 for anomaly, 1 for normal)
+    print(f"Predictions: {predictions}")
     result = ["Anomaly" if pred == -1 else "Normal" for pred in predictions]
     return result
 
 def main():
+    print("Script started...")  # Debugging line to confirm the script starts
+
     # Simulate new sensor data for testing
     test_data = np.array([48, 52, 75, 30, 55, 20, 65, 50])  # Example test data
     print(f"Testing data: {test_data}")
@@ -38,6 +42,7 @@ def main():
         results = test_model(model, test_data)
 
         # Display the results
+        print("Results:")
         for value, status in zip(test_data, results):
             print(f"Value: {value:.2f}, Status: {status}")
     except Exception as e:

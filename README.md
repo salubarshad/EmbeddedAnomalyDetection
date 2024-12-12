@@ -40,3 +40,71 @@ Run the `generate_data.py` script to generate the synthetic data:
 
 ```bash
 python scripts/generate_data.py
+```
+
+## Model Training
+
+Once the data is generated, the next step is to train a machine learning model on this data. In this case, we are using a Random Forest classifier, which is known for handling anomaly detection tasks well.
+
+### Training Process:
+- The data is loaded from the sensor_data.txt file.
+- A Random Forest model is trained to predict anomalies in the sensor readings.
+- The trained model is saved to a file (anomaly_model.pkl) for future use.
+
+Run the train_model.py script to train the model:
+
+```bash
+python scripts/train_model.py
+```
+
+## Model Testing
+
+After training the model, it's important to test its performance on unseen data. This is where the model’s accuracy and reliability are evaluated.
+
+The testing script will load the trained model and apply it to a test dataset, providing predictions for each sensor reading.
+
+### Testing Process:
+- The trained model is loaded from the saved .pkl file.
+- Test data is passed to the model, which returns predictions indicating whether each reading is an anomaly or normal.
+- The results are printed to the console, displaying the sensor readings and their corresponding status.
+
+Run the test_model.py script to test the model:
+
+```bash
+python scripts/test_model.py
+```
+
+## Usage
+
+To use this project, follow the steps below:
+
+1. Generate synthetic sensor data by running:
+```bash
+python scripts/generate_data.py
+```
+2. Train the anomaly detection model:
+```bash
+python scripts/train_model.py
+```
+3. Test the model's performance:
+```bash
+python scripts/test_model.py
+```
+
+Once these steps are completed, the model will be trained and tested, with results displayed on the console.
+
+## File Structure
+
+The project consists of the following files and folders:
+```bash
+/EmbeddedAnomalyDetection
+    /data
+        sensor_data.txt       # Generated sensor data
+    /models
+        anomaly_model.pkl     # Trained anomaly detection model
+    /scripts
+        generate_data.py      # Script for generating sensor data
+        train_model.py        # Script for training the model
+        test_model.py         # Script for testing the model
+    README.md                 # Project documentation
+```
